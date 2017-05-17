@@ -1,0 +1,21 @@
+CC = gcc
+CFLAGS= -I
+DEPS = Types.h cfg.h errorHandling.h huffmanDeCode.h huffmanEnCode.h input_huffman.h huffmanTreeGenerate.h outToFile.h
+SRCS = Main.c huffmanEnCode.c huffmanTreeGenerate.c huffmanDeCode.c input_huffman.c errorHandling.c outToFile.c
+OBJS = $(SRCS:.c=.o)
+
+%.o: %.c
+	$(CC) -c $*.c -w
+
+all: huff-comp
+	./huff-comp
+	
+huff-comp: $(OBJS)
+	$(CC) -o huff-comp $(OBJS)
+	
+$(OBJS): $(DEPS)
+
+.PHONY: clean 
+
+clean:
+	-rm -f *.o huff-comp
