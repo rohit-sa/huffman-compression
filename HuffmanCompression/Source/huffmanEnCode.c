@@ -34,7 +34,7 @@ struct queueType_st pop(struct queueType_st* queue){
 	return retValue;
 }
 
-void huffmanEnCode(char *infilePath){
+void huffmanEnCode(char* infilePath){
 
 	int i,j,k=0,levelCount = 0;
 	struct queueType_st queue[10000];

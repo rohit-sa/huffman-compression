@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
+#include<string.h>
 #include "HuffmanTestGen.h"
 
 #if (!UNBIASED)
@@ -40,18 +41,25 @@ void initFreqTable(void){
 	initHelper(freqTable+26,'e',12.702);
 }
 #endif
-void main(){
-	int i=0,j=0;
-	char filePath[255]="C:\\HuffmanCompression\\Test\\in.txt"; 
+int main(){
+	int i=0,j=0, len =0;
+	char filePath[255];
 	FILE *file_p;
 #if(!UNBIASED)
 	int k=0;
 	float PrevSum=0,Sum=0,temp = 0;
 #endif
-
+	printf("Enter output file path: ");
+	fflush(stdout);
+	fgets(filePath,255,stdin); 
+	len = strlen(filePath) - 1;
+	if(filePath[len] == '\n'){
+		filePath[len] = '\0';
+	}
+	printf("\nWriting to %s",filePath);
 	srand(time(NULL));
 	file_p = fopen(filePath,"w");
-	printf("generating in file...");
+	printf("\n Generating in file...");
 #if (UNBIASED)
 	{
 		for(i =0; i <NUMLINES; i++)
@@ -89,4 +97,5 @@ void main(){
 	}
 #endif
 	fclose(file_p);
+	return 0;
 }
